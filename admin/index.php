@@ -93,14 +93,14 @@ if(isset($_GET['delete_id'])){
           <!--<h1 style="margin-top: 10px">DataTable</h1>-->
             <?php
               if(isset($_GET['updated'])){
-                echo '<div class="alert alert-info alert-dismissable fade show" role="alert">   <strong>User!<trong> Updated with success.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span>
+                echo '<div class="alert alert-info alert-dismissable fade show" role="alert">   <strong>Movimento </strong>atualizado com sucesso.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span>
                 </button></div>';
               }else if(isset($_GET['deleted'])){
-                echo '<div class="alert alert-info alert-dismissable fade show" role="alert"><strong>User!<trong> Deleted with success.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span></button></div>';
+                echo '<div class="alert alert-info alert-dismissable fade show" role="alert"><strong>Movimento</strong> apagado com sucesso.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span></button></div>';
               }else if(isset($_GET['inserted'])){
-                echo '<div class="alert alert-info alert-dismissable fade show" role="alert"><strong>User!<trong> Inserted with success.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span></button></div>';
+                echo '<div class="alert alert-info alert-dismissable fade show" role="alert"><strong>Movimento</strong> inserido com sucesso.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span></button></div>';
               }else if(isset($_GET['error'])){
-                echo '<div class="alert alert-info alert-dismissable fade show" role="alert"><strong>DB Error!<trong> Something went wrong with your action. Try again!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span></button></div>';
+                echo '<div class="alert alert-info alert-dismissable fade show" role="alert"><strong>Erro com a Base de Dados!</strong> Algo de errado com a sua atividade, tente outra vez!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span></button></div>';
               }
             ?>
             <div class="table-responsive">
@@ -174,7 +174,7 @@ if(isset($_GET['delete_id'])){
         <script>
             // JQuery confirmation
             $('.confirmation').on('click', function () {
-                return confirm('Are you sure you want do delete this user?');
+                return confirm('Tem a certeza que quer apagar este movimento?');
             });
         </script>
 

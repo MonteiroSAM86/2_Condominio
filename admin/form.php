@@ -54,7 +54,9 @@ if(isset($_GET['edit_id'])){
 
 // POST
 if(isset($_POST['btn_save'])){
+  
   $data   = strip_tags($_POST['data']);
+  $data = date("Y-m-d");
   $descricao  = strip_tags($_POST['descricao']);//falta
   $id_condomino   = strip_tags($_POST['id_condomino']);
   $id_despesa   = strip_tags($_POST['id_despesa']);
@@ -95,7 +97,7 @@ if(isset($_POST['btn_save'])){
                 <?php require_once 'includes/sidebar.php'; ?>
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                   <h1 style="margin-top: 10px">Adicionar / Editar movimento da conta corrente</h1>
-                  <p>Required fields are in (*)</p>
+                  <p>Preenchimento obrigatório (*)</p>
                   <form  method="post">
                     <div class="form-group">
                         <label for="id">ID</label>
@@ -111,14 +113,14 @@ if(isset($_POST['btn_save'])){
                     </div>
                     <div class="form-group">
                         <label for="email">ID do Condomino *</label>
-                        <input  class="form-control" type="text" name="id_condomino" id="id_condomino" placeholder="11" value="<?php print($rowUser['id_condomino']); ?>" required maxlength="3">
+                        <input  class="form-control" type="number" name="id_condomino" id="id_condomino" placeholder="11" value="<?php print($rowUser['id_condomino']); ?>" required maxlength="3">
                     </div>
                     <div class="form-group">
-                        <label for="email">ID da receita</label>
-                        <input  class="form-control" type="text" name="id_despesa" id="id_despesa" placeholder="1" value="<?php print($rowUser['id_despesa']); ?>" maxlength="11">
+                        <label for="email">ID da Despesa</label>
+                        <input  class="form-control" type="number" name="id_despesa" id="id_despesa" placeholder="1" value="<?php print($rowUser['id_despesa']); ?>" maxlength="11">
                     <div class="form-group">
-                        <label for="email">ID da receita</label>
-                        <input  class="form-control" type="text" name="id_receita" id="id_receita" placeholder="1" value="<?php print($rowUser['id_receita']); ?>" maxlength="11">
+                        <label for="email">ID da Receita</label>
+                        <input  class="form-control" type="number" name="id_receita" id="id_receita" placeholder="1" value="<?php print($rowUser['id_receita']); ?>" maxlength="11">
                     </div>
                     <div class="form-group">
                         <label for="email">Valor *</label>

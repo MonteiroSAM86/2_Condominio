@@ -12,10 +12,10 @@
         
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="#"><span data-feather="file"></span>Movimentos</a>
+                <a class="nav-link" href="index.php"><span data-feather="file"></span>Movimentos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><span data-feather="plus-circle"></span>Adicionar movimento</a>
+                <a class="nav-link" href="form.php"><span data-feather="plus-circle"></span>Adicionar movimento</a>
             </li>
         </ul>
 
