@@ -39,9 +39,7 @@ error_reporting(E_ALL);
    echo '<div class="info"> A sua conta não foi verificada, por favor confirme no seu e-mail clicando no link!</div>';
  }
  
- 
-
-// Falta configurar
+// Apagar linha 
 if(isset($_GET['delete_id'])){
   $id = $_GET['delete_id'];
   try{
@@ -59,7 +57,7 @@ if(isset($_GET['delete_id'])){
 
 ?>
 <!doctype html>
-<html lang="en">
+<html lang="pt">
     <head>
         <!-- Head metas, css, and title -->
         <?php require_once 'includes/head.php'; ?>

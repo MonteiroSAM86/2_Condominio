@@ -20,11 +20,16 @@ class User {
     }
 
     // Insert FALTA CONFUGURAR
-    public function insert($name, $email){
+    public function insert($data, $descricao, $id_condomino, $id_despesa, $id_receita, $valor, $tipo){
       try{
-        $stmt = $this->conn->prepare("INSERT INTO crud_users (name, email) VALUES(:name, :email)");
-        $stmt->bindparam(":name", $name);
-        $stmt->bindparam(":email", $email);
+        $stmt = $this->conn->prepare("INSERT INTO banco (data, descricao, id_condomino, id_despesa, id_receita, valor, tipo) VALUES(:data, :descricao, :id_condomino, :id_despesa, :id_receita, :valor, :tipo)");
+        $stmt->bindparam(":data", $data);
+        $stmt->bindparam(":descricao", $descricao);
+        $stmt->bindparam(":id_condomino", $id_condomino);
+        $stmt->bindparam(":id_despesa", $id_despesa);
+        $stmt->bindparam(":id_receita", $id_receita);
+        $stmt->bindparam(":valor", $valor);
+        $stmt->bindparam(":tipo", $tipo);
         $stmt->execute();
         return $stmt;
       }catch(PDOException $e){
@@ -33,12 +38,17 @@ class User {
     }
 
 
-    // Update Insert FALTA CONFUGURAR
-    public function update($name, $email, $id){
+    // Update Insert 
+    public function update($data, $descricao, $id_condomino, $id_despesa, $id_receita, $valor, $tipo, $id){
         try{
-          $stmt = $this->conn->prepare("UPDATE crud_users SET name = :name, email = :email WHERE id = :id");
-          $stmt->bindparam(":name", $name);
-          $stmt->bindparam(":email", $email);
+          $stmt = $this->conn->prepare("UPDATE banco SET data = :data, descricao = :descricao, id_condomino = :id_condomino, id_despesa = :id_despesa, id_receita = :id_receita, valor = :valor, tipo = :tipo WHERE id_banco = :id");
+          $stmt->bindparam(":data", $data);
+          $stmt->bindparam(":descricao", $descricao);
+          $stmt->bindparam(":id_condomino", $id_condomino);
+          $stmt->bindparam(":id_despesa", $id_despesa);
+          $stmt->bindparam(":id_receita", $id_receita);
+          $stmt->bindparam(":valor", $valor);
+          $stmt->bindparam(":tipo", $tipo);
           $stmt->bindparam(":id", $id);
           $stmt->execute();
           return $stmt;
@@ -51,7 +61,7 @@ class User {
     // Delete Insert FALTA CONFUGURAR
     public function delete($id){
       try{
-        $stmt = $this->conn->prepare("DELETE FROM crud_users WHERE id = :id");
+        $stmt = $this->conn->prepare("DELETE FROM banco WHERE id_banco = :id");
         $stmt->bindparam(":id", $id);
         $stmt->execute();
         return $stmt;
