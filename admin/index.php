@@ -111,13 +111,15 @@ if(isset($_GET['delete_id'])){
                   <tr>
                     <th>#</th>
                     <th>Data</th>
+                    <th>Operação</th>
+                    <th>Entidade</th>
                     <th>Descrição</th>
                     <th>Valor</th>
                     <th></th>
                   </tr>
                 </thead>
                 <?php
-                  $query = "SELECT * FROM banco";
+                  $query = "SELECT b.id_banco, b.tipo, b.data, f.piso, b.descricao, FORMAT(IF (b.id_despesa>0, -1*b.valor, b.valor),2) AS valor, CASE WHEN b.id_despesa>0 THEN 'Despesa' WHEN b.id_receita>0 THEN 'Receita' ELSE NULL END AS opr from banco b join condominos c on c.id_condomino = b.id_condomino join fracoes f on f.id_condomino = c.id_condomino";
                   $stmt = $objUser->runQuery($query);
                   $stmt->execute();
                 ?>
@@ -133,8 +135,10 @@ if(isset($_GET['delete_id'])){
                         <?php print($rowUser['data']); ?>
                       </a>
                     </td>
+                    <td><?php print($rowUser['opr']); ?></td>
+                    <td><?php print($rowUser['piso']); ?></td>
                     <td><?php print($rowUser['descricao']); ?></td>
-                    <td><?php print($rowUser['valor']); ?></td>
+                    <td><?php print($rowUser['valor']); ?> €</td>
                     <td>
                       <a class="confirmation" href="index.php?delete_id=<?php print($rowUser['id_banco']); ?>">
                         <span data-feather="trash"></span>
@@ -147,7 +151,23 @@ if(isset($_GET['delete_id'])){
               </table>
             </div>
       </div>
+    
+    
+    <div>
+      <?php
+        $update = "SELECT UPDATE_TIME FROM information_schema.tables WHERE  TABLE_SCHEMA = 'condominio' AND TABLE_NAME = 'banco'";
+        $stmt2 = $objUser->runQuery($update);
+        $stmt2->execute();
+      ?>
+      <?php 
+        if($stmt2->rowCount() > 0){
+        while($rowUser2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
+      ?>
+      <p>Última atualização <?php print($rowUser2['UPDATE_TIME']); ?></p>
+      <?php } } ?>
+    </div>
     </main>
+    
 
         <!-- Footer scripts, and functions -->
         <?php require_once 'includes/footer.php'; ?>
