@@ -93,40 +93,40 @@ if(isset($_GET['delete_id'])){
             <div class="col-md-3 pt-2 pb-1 mt-2 mb-2 border-right border-bottom"> <!-- Formulário -->
               <h5 class="text-center text-secondary">Adicionar movimento</h5>
               <p>Preenchimento obrigatório (*)</p>
-              <form action="action.php" method="post" enctype="multipart/form-data">
+              <form action="action.php" method="post">
               <div class="form-group">
                 <label for="Data">Data *</label>
-                <input type="date" name="data" id="data" class="form-control" placeholder="" aria-describedby="helpId">
+                <input type="date" name="data" id="data" class="form-control" placeholder="" aria-describedby="helpId" required>
                 <small id="helpId" class="text-muted">Coloque a data</small>
               </div>
               <div class="form-group">
                 <label for="Descrição">Descrição *</label>
-                <input type="text" name="descricao" id="descricao" class="form-control" placeholder="" aria-describedby="helpId">
+                <input type="text" name="descricao" id="descricao" class="form-control" placeholder="" aria-describedby="helpId" required>
                 <small id="helpId" class="text-muted">Coloque a descrição do movimento</small>
               </div>
               <div class="form-group">
                 <label for="Id do Condómino">ID do Condómino *</label>
-                <input type="number" name="id_condomino" id="id_condomino" class="form-control" placeholder="" aria-describedby="helpId">
+                <input type="text" name="id_condomino" id="id_condomino" class="form-control" placeholder="" aria-describedby="helpId" required>
                 <small id="helpId" class="text-muted">Coloque a identificação do ID do Condómino</small>
               </div>
               <div class="form-group">
                 <label for="ID da despesa">Id da despesa</label>
-                <input type="number" name="id_despesa" id="id_despesa" class="form-control" placeholder="" aria-describedby="helpId">
+                <input type="text" name="id_despesa" id="id_despesa" class="form-control" placeholder="" aria-describedby="helpId">
                 <small id="helpId" class="text-muted">Coloque o ID da despesa</small>
               </div>
               <div class="form-group">
                 <label for="Ida da receita">Id da receita</label>
-                <input type="number" name="id_receita" id="id_receita" class="form-control" placeholder="" aria-describedby="helpId">
+                <input type="text" name="id_receita" id="id_receita" class="form-control" placeholder="" aria-describedby="helpId">
                 <small id="helpId" class="text-muted">Coloque o ID da receita</small>
               </div>
               <div class="form-group">
                 <label for="Valor">Valor *</label>
-                <input type="number" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" name="valor" id="valor" class="form-control" placeholder="" aria-describedby="helpId">
+                <input type="number" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" name="valor" id="valor" class="form-control" placeholder="" aria-describedby="helpId" required>
                 <small id="helpId" class="text-muted">Valor do movimento</small>
               </div>
               <div class="form-group">
                 <label for="Tipo de Operação">Tipo de Operação *</label>
-                <input type="text" name="tipo" id="tipo" class="form-control" placeholder="" aria-describedby="helpId">
+                <input type="text" name="tipo" id="tipo" class="form-control" placeholder="" aria-describedby="helpId" required>
                 <small id="helpId" class="text-muted">Coloque se a operação é "trf" ou "num"</small>
               </div>
               <button type="submit" name="add" class="btn btn-primary btn-block mb-2">Adicionar Registo</button>
@@ -148,7 +148,7 @@ if(isset($_GET['delete_id'])){
                   </tr>
                 </thead>
                 <?php
-                  $query = "SELECT b.id_banco, b.comprovativo, b.tipo, b.data, f.piso, b.descricao, FORMAT(IF (b.id_despesa>0, -1*b.valor, b.valor),2) AS valor, CASE WHEN b.id_despesa>0 THEN 'Despesa' WHEN b.id_receita>0 THEN 'Receita' ELSE NULL END AS opr from banco b join condominos c on c.id_condomino = b.id_condomino join fracoes f on f.id_condomino = c.id_condomino";
+                  $query = "SELECT b.id_banco, b.tipo, b.data, f.piso, b.descricao, FORMAT(IF (b.id_despesa>0, -1*b.valor, b.valor),2) AS valor, CASE WHEN b.id_despesa>0 THEN 'Despesa' WHEN b.id_receita>0 THEN 'Receita' ELSE NULL END AS opr from banco b join condominos c on c.id_condomino = b.id_condomino join fracoes f on f.id_condomino = c.id_condomino";
                   $stmt = $objUser->runQuery($query);
                   $stmt->execute();
                 ?>
@@ -165,9 +165,6 @@ if(isset($_GET['delete_id'])){
                     <td><?php print($rowUser['descricao']); ?></td>
                     <td><?php print($rowUser['valor']); ?> €</td>
                     <td>
-                      <a class="confirmation" href="form.php?edit_id=<?php print($rowUser['comprovativo']); ?>">
-                        <span data-feather="file"></span>
-                      </a> | 
                       <a class="confirmation" href="form.php?edit_id=<?php print($rowUser['id_banco']); ?>">
                         <span data-feather="edit"></span>
                       </a> | 
