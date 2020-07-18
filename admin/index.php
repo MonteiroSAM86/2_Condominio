@@ -121,18 +121,13 @@ if(isset($_GET['delete_id'])){
               </div>
               <div class="form-group">
                 <label for="Valor">Valor *</label>
-                <input type="number" name="valor" id="valor" class="form-control" placeholder="" aria-describedby="helpId">
+                <input type="number" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" name="valor" id="valor" class="form-control" placeholder="" aria-describedby="helpId">
                 <small id="helpId" class="text-muted">Valor do movimento</small>
               </div>
               <div class="form-group">
                 <label for="Tipo de Operação">Tipo de Operação *</label>
                 <input type="text" name="tipo" id="tipo" class="form-control" placeholder="" aria-describedby="helpId">
                 <small id="helpId" class="text-muted">Coloque se a operação é "trf" ou "num"</small>
-              </div>
-              <div class="form-group">
-                <label for="Comprovativo">Comprovativo</label>
-                <input type="file" class="form-control-file" name="comprovativo" id="comprovativo" placeholder="" aria-describedby="fileHelpId">
-                <small id="fileHelpId" class="form-text text-muted">Anexe aqui o comprovativo do movimento</small>
               </div>
               <button type="submit" name="add" class="btn btn-primary btn-block mb-2">Adicionar Registo</button>
               </form>

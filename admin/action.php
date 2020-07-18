@@ -1,6 +1,6 @@
 <?php
 
- $conn = new mysqli("localhost", "root", "", "crud_users");
+ $conn = new mysqli("localhost", "root", "", "condominio");
 
  if ($conn->connect_error) {
      die("Problemas na ligação à Base de Dados".$conn->connect_error);
@@ -12,16 +12,17 @@
     if(isset($_POST['add'])){
         $data=$_POST['data'];
         $descricao=$_POST['descricao'];
+        $id_condomino=$_POST['id_condomino'];
+        $id_despesa=$_POST['id_despesa'];
+        $id_receita=$_POST['id_receita'];
+        $valor=$_POST['valor'];
+        $tipo=$_POST['tipo'];
         
-        $doc=$_FILE['comprovativo']['name'];
-        $upload="uploads/".$doc;
-
-        $query="INSERT INTO crud_users(name, email, photo) VALUES (?,?,?)";
+        $query="INSERT INTO banco(data, descricao, id_condomino, id_despesa, id_receita, valor, tipo) VALUES (?,?,?,?,?,?,?)";
         $stmt=$conn->prepare($query);
-        $stmt->bind_param("sss", $data, $descricao, $upload);
+        $stmt->bind_param("sssssss", $data, $descricao, $id_condomino, $id_despesa, $id_receita, $valor, $tipo);
         $stmt->execute();
-        move_uploaded_file($_FILES['comprovativo']['tmp_name'], $upload);
-
+       
         header('location:index.php');
 
     }
