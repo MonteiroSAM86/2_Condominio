@@ -41,7 +41,7 @@ error_reporting(E_ALL);
    echo '<div class="info"> A sua conta não foi verificada, por favor confirme no seu e-mail clicando no link!</div>';
  }
  
-// Apagar linha ok
+// Função apagar linha ok
 if(isset($_GET['delete_id'])){
   $id = $_GET['delete_id'];
   try{
@@ -94,46 +94,63 @@ if(isset($_GET['delete_id'])){
               <h5 class="text-center text-secondary">Adicionar movimento</h5>
               <p>Preenchimento obrigatório (*)</p>
               <form action="action.php" method="post">
+              <input type="hidden" name="id_banco" value="<?= $id_banco; ?>">
               <div class="form-group">
                 <label for="Data">Data *</label>
-                <input type="date" name="data" id="data" class="form-control" placeholder="" aria-describedby="helpId" required>
+                <input type="date" name="data" value="<?= $data; ?>" id="data" class="form-control" placeholder="" aria-describedby="helpId" required>
                 <small id="helpId" class="text-muted">Coloque a data</small>
               </div>
               <div class="form-group">
                 <label for="Descrição">Descrição *</label>
-                <input type="text" name="descricao" id="descricao" class="form-control" placeholder="" aria-describedby="helpId" required>
+                <input type="text" name="descricao" value="<?= $descricao; ?>" id="descricao" class="form-control" placeholder="" aria-describedby="helpId" required>
                 <small id="helpId" class="text-muted">Coloque a descrição do movimento</small>
               </div>
               <div class="form-group">
-                <label for="Id do Condómino">ID do Condómino *</label>
-                <input type="text" name="id_condomino" id="id_condomino" class="form-control" placeholder="" aria-describedby="helpId" required>
-                <small id="helpId" class="text-muted">Coloque a identificação do ID do Condómino</small>
+                <label for="ID do Condómino">ID do Condómino</label>
+                <input type="text" name="id_condomino" value="<?= $id_condomino; ?>" id="id_condomino" class="form-control" placeholder="" aria-describedby="helpId" required>
+                <small id="helpId" class="text-muted">Coloque o ID do Condómino *</small>
               </div>
               <div class="form-group">
-                <label for="ID da despesa">Id da despesa</label>
-                <input type="text" name="id_despesa" id="id_despesa" class="form-control" placeholder="" aria-describedby="helpId">
-                <small id="helpId" class="text-muted">Coloque o ID da despesa</small>
+                <label for="ID da Despesa">ID da Despesa</label>
+                <input type="text" name="id_despesa" value="<?= $id_despesa; ?>" id="id_despesa" class="form-control" placeholder="" aria-describedby="helpId">
+                <small id="helpId" class="text-muted">Coloque o ID da Despesa</small>
               </div>
               <div class="form-group">
-                <label for="Ida da receita">Id da receita</label>
-                <input type="text" name="id_receita" id="id_receita" class="form-control" placeholder="" aria-describedby="helpId">
-                <small id="helpId" class="text-muted">Coloque o ID da receita</small>
+                <label for="ID da Receita">ID da Receita</label>
+                <input type="text" name="id_receita" value="<?= $id_receita; ?>" id="id_receita" class="form-control" placeholder="" aria-describedby="helpId">
+                <small id="helpId" class="text-muted">Coloque o ID da Despesa</small>
               </div>
+                    
               <div class="form-group">
                 <label for="Valor">Valor *</label>
-                <input type="number" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" name="valor" id="valor" class="form-control" placeholder="" aria-describedby="helpId" required>
+                <input type="number" pattern="[0-9]+([\.,][0-9]+)?" step="0.01" name="valor" value="<?= $valor; ?>" id="valor" class="form-control" placeholder="" aria-describedby="helpId" required>
                 <small id="helpId" class="text-muted">Valor do movimento</small>
               </div>
               <div class="form-group">
-                <label for="Tipo de Operação">Tipo de Operação *</label>
-                <input type="text" name="tipo" id="tipo" class="form-control" placeholder="" aria-describedby="helpId" required>
-                <small id="helpId" class="text-muted">Coloque se a operação é "trf" ou "num"</small>
+                <label for="Tipo">Tipo de Operação *</label>
+                <input type="text" name="tipo" value="<?= $tipo; ?>" id="tipo" class="form-control" placeholder="" aria-describedby="helpId" required>
+                <small id="helpId" class="text-muted">Coloque "num" ou "trf"""</small>
               </div>
-              <button type="submit" name="add" class="btn btn-primary btn-block mb-2">Adicionar Registo</button>
+              <?php  if($update==true){ ?>
+                <button type="submit" name="update" class="btn btn-success btn-block mb-2">Atualizar Registo</button>
+              <?php } else {?>
+              <button type="submit" name="add" class="btn btn-primary btn-block mb-2">Adicionar Registo</button> <?php } ?>
               </form>
             </div>
             
             <div class="col-md-9 pt-2 pb-1 mt-2 mb-2"> <!-- Exibição do conteudo -->
+            <?php
+              if(isset($_GET['updated'])){
+                echo '<div class="alert alert-info alert-dismissable fade show" role="alert">   <strong>Movimento </strong>atualizado com sucesso.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span>
+                </button></div>';
+              }else if(isset($_GET['deleted'])){
+                echo '<div class="alert alert-info alert-dismissable fade show" role="alert"><strong>Movimento</strong> apagado com sucesso.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span></button></div>';
+              }else if(isset($_GET['inserted'])){
+                echo '<div class="alert alert-info alert-dismissable fade show" role="alert"><strong>Movimento</strong> inserido com sucesso.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span></button></div>';
+              }else if(isset($_GET['error'])){
+                echo '<div class="alert alert-info alert-dismissable fade show" role="alert"><strong>Erro com a Base de Dados!</strong> Algo de errado com a sua atividade, tente outra vez!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span></button></div>';
+              }
+            ?>
               <h5 class="text-center text-secondary">Movimentos</h5>
               <table id="example" class="table table-hover table-sm">
                 <thead>
@@ -165,7 +182,7 @@ if(isset($_GET['delete_id'])){
                     <td><?php print($rowUser['descricao']); ?></td>
                     <td><?php print($rowUser['valor']); ?> €</td>
                     <td>
-                      <a class="confirmation" href="form.php?edit_id=<?php print($rowUser['id_banco']); ?>">
+                      <a href="index.php?edit=<?php print($rowUser['id_banco']); ?>">
                         <span data-feather="edit"></span>
                       </a> | 
                       <a class="confirmation" href="index.php?delete_id=<?php print($rowUser['id_banco']); ?>">
@@ -196,18 +213,7 @@ if(isset($_GET['delete_id'])){
           </div> <!-- CONSIDERAR -->
           
           <!-- NÃO APAGAR -->
-            <?php
-              if(isset($_GET['updated'])){
-                echo '<div class="alert alert-info alert-dismissable fade show" role="alert">   <strong>Movimento </strong>atualizado com sucesso.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span>
-                </button></div>';
-              }else if(isset($_GET['deleted'])){
-                echo '<div class="alert alert-info alert-dismissable fade show" role="alert"><strong>Movimento</strong> apagado com sucesso.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span></button></div>';
-              }else if(isset($_GET['inserted'])){
-                echo '<div class="alert alert-info alert-dismissable fade show" role="alert"><strong>Movimento</strong> inserido com sucesso.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span></button></div>';
-              }else if(isset($_GET['error'])){
-                echo '<div class="alert alert-info alert-dismissable fade show" role="alert"><strong>Erro com a Base de Dados!</strong> Algo de errado com a sua atividade, tente outra vez!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"> &times; </span></button></div>';
-              }
-            ?>
+
             
     
     
