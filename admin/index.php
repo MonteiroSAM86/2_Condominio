@@ -7,7 +7,7 @@ error_reporting(E_ALL);
  #Ligação Base de Dados
  require_once 'db/dbase.php';
 
- include 'db/action.php';
+ include 'action.php';
 
  //Ligação com a base de dados
  $objUser = new User();
@@ -93,20 +93,20 @@ if(isset($_GET['delete_id'])){
             <div class="col-md-3 pt-2 pb-1 mt-2 mb-2 border-right border-bottom"> <!-- Formulário -->
               <h5 class="text-center text-secondary">Adicionar movimento</h5>
               <p>Preenchimento obrigatório (*)</p>
-              <form action="db/action.php" method="post" enctype="multipart/form-data">
+              <form action="action.php" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="Data">Data *</label>
-                <input type="date" name="data" id="data" class="form-control" placeholder="" aria-describedby="helpId" required>
+                <input type="date" name="data" id="data" class="form-control" placeholder="" aria-describedby="helpId">
                 <small id="helpId" class="text-muted">Coloque a data</small>
               </div>
               <div class="form-group">
                 <label for="Descrição">Descrição *</label>
-                <input type="text" name="descricao" id="descricao" class="form-control" placeholder="" aria-describedby="helpId" required>
+                <input type="text" name="descricao" id="descricao" class="form-control" placeholder="" aria-describedby="helpId">
                 <small id="helpId" class="text-muted">Coloque a descrição do movimento</small>
               </div>
               <div class="form-group">
                 <label for="Id do Condómino">ID do Condómino *</label>
-                <input type="number" name="id_condomino" id="id_condomino" class="form-control" placeholder="" aria-describedby="helpId" required>
+                <input type="number" name="id_condomino" id="id_condomino" class="form-control" placeholder="" aria-describedby="helpId">
                 <small id="helpId" class="text-muted">Coloque a identificação do ID do Condómino</small>
               </div>
               <div class="form-group">
@@ -121,12 +121,12 @@ if(isset($_GET['delete_id'])){
               </div>
               <div class="form-group">
                 <label for="Valor">Valor *</label>
-                <input type="number" name="valor" id="valor" class="form-control" placeholder="" aria-describedby="helpId" required>
+                <input type="number" name="valor" id="valor" class="form-control" placeholder="" aria-describedby="helpId">
                 <small id="helpId" class="text-muted">Valor do movimento</small>
               </div>
               <div class="form-group">
                 <label for="Tipo de Operação">Tipo de Operação *</label>
-                <input type="text" name="tipo" id="tipo" class="form-control" placeholder="" aria-describedby="helpId" required>
+                <input type="text" name="tipo" id="tipo" class="form-control" placeholder="" aria-describedby="helpId">
                 <small id="helpId" class="text-muted">Coloque se a operação é "trf" ou "num"</small>
               </div>
               <div class="form-group">
