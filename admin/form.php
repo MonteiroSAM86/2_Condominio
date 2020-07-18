@@ -54,15 +54,13 @@ if(isset($_GET['edit_id'])){
 
 // POST
 if(isset($_POST['btn_save'])){
-  
-  $data   = strip_tags($_POST['data']);
-  $data = date("Y-m-d");
-  $descricao  = strip_tags($_POST['descricao']);//falta
-  $id_condomino   = strip_tags($_POST['id_condomino']);
-  $id_despesa   = strip_tags($_POST['id_despesa']);
-  $id_receita   = strip_tags($_POST['id_receita']);
-  $valor   = strip_tags($_POST['valor']);
-  $tipo   = strip_tags($_POST['tipo']);
+  $data = strip_tags($_POST['data']);
+  $descricao = strip_tags($_POST['descricao']);//falta
+  $id_condomino = strip_tags($_POST['id_condomino']);
+  $id_despesa = strip_tags($_POST['id_despesa']);
+  $id_receita = strip_tags($_POST['id_receita']);
+  $valor = strip_tags($_POST['valor']);
+  $tipo = strip_tags($_POST['tipo']);
 
   try{
      if($id != null){
@@ -91,48 +89,49 @@ if(isset($_POST['btn_save'])){
     <body>
         <!-- Header banner -->
         <?php require_once 'includes/header.php'; ?>
+        <!-- Sidebar menu -->
+        <?php require_once 'includes/sidebar.php'; ?>
         <div class="container-fluid">
             <div class="row">
-                <!-- Sidebar menu -->
-                <?php require_once 'includes/sidebar.php'; ?>
-                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                  <h1 style="margin-top: 10px">Adicionar / Editar movimento da conta corrente</h1>
-                  <p>Preenchimento obrigatório (*)</p>
-                  <form  method="post">
-                    <div class="form-group">
-                        <label for="id">ID</label>
-                        <input class="form-control" type="text" name="id" id="id" value="<?php print($rowUser['id_banco']); ?>" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Data *</label>
-                        <input  class="form-control" type="date" name="name" id="name" value="<?php print($rowUser['data']); ?>" required maxlength="100">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Descrição *</label>
-                        <input  class="form-control" type="text" name="email" id="email" placeholder="Pagamento do condominio 2020" value="<?php print($rowUser['descricao']); ?>" required maxlength="250">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">ID do Condomino *</label>
-                        <input  class="form-control" type="number" name="id_condomino" id="id_condomino" placeholder="11" value="<?php print($rowUser['id_condomino']); ?>" required maxlength="3">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">ID da Despesa</label>
-                        <input  class="form-control" type="number" name="id_despesa" id="id_despesa" placeholder="1" value="<?php print($rowUser['id_despesa']); ?>" maxlength="11">
-                    <div class="form-group">
-                        <label for="email">ID da Receita</label>
-                        <input  class="form-control" type="number" name="id_receita" id="id_receita" placeholder="1" value="<?php print($rowUser['id_receita']); ?>" maxlength="11">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Valor *</label>
-                        <input  class="form-control" type="number" name="valor" id="valor" placeholder="100" value="<?php print($rowUser['valor']); ?>" required maxlength="100">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Tipo *</label>
-                        <input  class="form-control" type="text" name="tipo" id="tipo" placeholder="trf" value="<?php print($rowUser['tipo']); ?>" required maxlength="3">
-                    </div>
-                    <input class="btn btn-primary mb-2" type="submit" name="btn_save" value="Guardar">
-                  </form>
-                </main>
+              <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <h1 style="margin-top: 10px">Adicionar / Editar movimento da conta corrente</h1>
+                <p>Preenchimento obrigatório (*)</p>
+                <form  method="post">
+                  <div class="form-group">
+                    <label for="id">ID</label>
+                    <input class="form-control" type="text" name="id" id="id" value="<?php print($rowUser['id_banco']); ?>" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Data *</label>
+                    <input  class="form-control" type="date" name="data" id="data" value="<?php print($rowUser['data']); ?>" required maxlength="100">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Descrição *</label>
+                      <input  class="form-control" type="text" name="descricao" id="descricao" placeholder="Pagamento do condominio 2020" value="<?php print($rowUser['descricao']); ?>" required maxlength="250">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">ID do Condomino *</label>
+                    <input  class="form-control" type="number" name="id_condomino" id="id_condomino" placeholder="11" value="<?php print($rowUser['id_condomino']); ?>" required maxlength="3">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">ID da Despesa</label>
+                    <input  class="form-control" type="text" name="id_despesa" id="id_despesa" placeholder="1" value="<?php print($rowUser['id_despesa']); ?>" maxlength="11">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">ID da Receita</label>
+                    <input  class="form-control" type="text" name="id_receita" id="id_receita" placeholder="1" value="<?php print($rowUser['id_receita']); ?>" maxlength="11">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Valor *</label>
+                    <input  class="form-control" type="number" name="valor" id="valor" placeholder="100" value="<?php print($rowUser['valor']); ?>" required maxlength="100">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Tipo *</label>
+                    <input  class="form-control" type="text" name="tipo" id="tipo" placeholder="trf" value="<?php print($rowUser['tipo']); ?>" required maxlength="3">
+                  </div>
+                  <input class="btn btn-primary mb-2" type="submit" name="btn_save" value="Guardar">
+                </form>
+              </main>
             </div>
         </div>
         <!-- Footer scripts, and functions -->

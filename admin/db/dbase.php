@@ -19,6 +19,9 @@ class User {
       return $stmt;
     }
 
+    // Insert 
+    
+
     // Insert FALTA CONFUGURAR
     public function insert($data, $descricao, $id_condomino, $id_despesa, $id_receita, $valor, $tipo){
       try{
@@ -58,7 +61,7 @@ class User {
     }
 
 
-    // Delete Insert FALTA CONFUGURAR
+    // Delete Insert 
     public function delete($id){
       try{
         $stmt = $this->conn->prepare("DELETE FROM banco WHERE id_banco = :id");
