@@ -35,7 +35,7 @@
         $stmt->bind_param("sssssss", $data, $descricao, $id_condomino, $id_despesa, $id_receita, $valor, $tipo);
         $stmt->execute();
        
-        header('location:index.php');
+        header('location:index.php?inserted');
 
     }
 
@@ -63,7 +63,7 @@
     }
 
     if(isset($_POST['update'])){
-        $id_banco=$_POST['update'];
+        $id_banco=$_POST['id_banco'];
         $data=$_POST['data'];
         $descricao=$_POST['descricao'];
         $id_condomino=$_POST['id_condomino'];
@@ -72,12 +72,16 @@
         $valor=$_POST['valor'];
         $tipo=$_POST['tipo'];
 
-        $query="UPDATE banco SET data=?, descricao=?, id_condomino=?, id_despesa=?, id_receita=?, valor=?, tipo=?";
+        $query="UPDATE banco SET data=?, descricao=?, id_condomino=?, id_despesa=?, id_receita=?, valor=?, tipo=? WHERE id_banco=?";
         $stmt=$conn->prepare($query);
         $stmt->bind_param("sssssssi", $data, $descricao, $id_condomino, $id_despesa, $id_receita, $valor, $tipo, $id_banco);
         $stmt->execute();
-       
-        header('location:index.php');
+
+        
+        header('location:index.php?updated');
 
     }
+
+    //Delete
+    
 ?>

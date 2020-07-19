@@ -152,7 +152,7 @@ if(isset($_GET['delete_id'])){
               }
             ?>
               <h5 class="text-center text-secondary">Registos</h5>
-              <table id="example" class="table table-striped table-bordered" style="width:100%">
+              <table id="example" class="table table-hover table-sm">
                 <thead>
                   <tr>
                     <th>#</th>
