@@ -37,21 +37,6 @@ error_reporting(E_ALL);
    echo '<div class="info"> A sua conta não foi verificada, por favor confirme no seu e-mail clicando no link!</div>';
  }
  
-// Função apagar Falta Configurar 
-if(isset($_GET['delete_id'])){
-  $id = $_GET['delete_id'];
-  try{
-    if($id != null){
-      if($conn->delete($id)){
-        $conn->redirect('index.php?deleted');
-      }
-    }else{
-      var_dump($id);
-    }
-  }catch(PDOException $e){
-    echo $e->getMessage();
-  }
-}
 
 ?>
 <!doctype html>
@@ -180,7 +165,7 @@ if(isset($_GET['delete_id'])){
                       <a href="index.php?edit=<?php print($rowUser['id_banco']); ?>">
                         <span data-feather="edit"></span>
                       </a> | 
-                      <a class="confirmation" href="index.php?delete_id=<?php print($rowUser['id_banco']); ?>">
+                      <a class="confirmation" href="action.php?delete=<?php print($rowUser['id_banco']); ?>">
                         <span data-feather="trash"></span>
                       </a>
                     </td>
@@ -205,14 +190,9 @@ if(isset($_GET['delete_id'])){
             
             </div>
           
-          </div> <!-- CONSIDERAR -->
+          </div> 
           
-          <!-- NÃO APAGAR -->
-
-            
-    
-    
-    
+          
 
         <!-- Footer scripts, and functions -->
         <?php require_once 'includes/footer.php'; ?>

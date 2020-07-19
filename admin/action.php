@@ -86,5 +86,15 @@
     }
 
     //Delete
-    
+    if(isset($_GET['delete'])){
+        $id=$_GET['delete'];
+                
+        $query="DELETE FROM banco WHERE id_banco=?";
+        $stmt=$conn->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+       
+        header('location:index.php?deleted');
+
+    }
 ?>
