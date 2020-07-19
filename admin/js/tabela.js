@@ -1,5 +1,7 @@
 $(document).ready(function() {
-    $('#example').DataTable( {
+    var table = $('#example').DataTable( {
+        lengthChange: false,
+        buttons: [ 'excel', 'pdf', 'colvis' ],
         "lengthMenu": [[15, 20, 50, -1], [15, 20, 50, "All"]],
         "order": [[ 1, "desc" ]],
         "columnDefs": [{"targets": [ 0 ],"visible": false,"searchable": false } ],
@@ -13,20 +15,18 @@ $(document).ready(function() {
             "sInfoThousands": ".",
             "sLoadingRecords": "Carregando...",
             "sProcessing": "Processando...",
-            "sSearch": "Pesquisar"
+            "sSearch": "Pesquisar",
+            "buttons": {
+                colvis: 'Colunas visiveis'
+            },
+            "paginate": {
+                "previous": "Pág. anterior",
+                "next": "Próxima pág."
+            }
+                
          }
-    } );
-} );
-
-/*$(document).ready(function() {
-    var table = $('#example').DataTable( {
-        lengthChange: false,
-        buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
     } );
  
     table.buttons().container()
         .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-} );*/
-
-
-
+} );

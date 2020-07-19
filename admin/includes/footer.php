@@ -18,7 +18,7 @@
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
-<!-- Exportar dadod da tabela -->
+<!-- Exportar dados da tabela -->
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
@@ -31,19 +31,7 @@
 <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
 
-<!-- Botoes de navegação e exportação
-<script src="../js/dashboard.js"></script>
 
-
-
-<script src="js/export/jquery-3.5.1.js"></script>
-<script src="js/export/jquery.dataTables.min.js"></script>
-<script src="js/export/dataTables.buttons.min.js"></script>
-<script src="js/export/jszip.min.js"></script>
-<script src="js/export/pdfmake.min.js"></script>
-<script src="js/export/vfs_fonts.js"></script>
-<script src="js/export/buttons.html5.min.js"></script>
-<script src="js/export/export.js"></script>-->
     </body>
 
 

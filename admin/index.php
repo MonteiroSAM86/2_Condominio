@@ -5,12 +5,8 @@ ini_set('display_startup_erros',1);
 error_reporting(E_ALL);
 
  #Ligação Base de Dados
- require_once 'db/dbase.php';
-
  include 'action.php';
 
- //Ligação com a base de dados
- $objUser = new User();
  
    #LOGIN
    /* Displays user information and some useful messages */
@@ -41,13 +37,13 @@ error_reporting(E_ALL);
    echo '<div class="info"> A sua conta não foi verificada, por favor confirme no seu e-mail clicando no link!</div>';
  }
  
-// Função apagar linha ok
+// Função apagar Falta Configurar 
 if(isset($_GET['delete_id'])){
   $id = $_GET['delete_id'];
   try{
     if($id != null){
-      if($objUser->delete($id)){
-        $objUser->redirect('index.php?deleted');
+      if($conn->delete($id)){
+        $conn->redirect('index.php?deleted');
       }
     }else{
       var_dump($id);
@@ -74,16 +70,15 @@ if(isset($_GET['delete_id'])){
                 <h1 class="text-center text-dark">Conta Corrente</h1>
                 <?php
                   $query = "SELECT FORMAT(SUM(IF (id_despesa>0, -1*valor, valor)),2) as saldo from banco";
-                  $stmt = $objUser->runQuery($query);
+                  $stmt=$conn->prepare($query);
                   $stmt->execute();
+                  $result=$stmt->get_result();
                 ?>  
                 <h5> Saldo
                   <?php 
-                    if($stmt->rowCount() > 0){
-                      while($rowUser = $stmt->fetch(PDO::FETCH_ASSOC)){
+                    while($rowUser = $result->FETCH_ASSOC()){
                         print($rowUser['saldo']);
                       }
-                    }
                   ?> € 
                 </h5>   
               </div>
@@ -166,13 +161,13 @@ if(isset($_GET['delete_id'])){
                 </thead>
                 <?php
                   $query = "SELECT b.id_banco, b.tipo, b.data, f.piso, b.descricao, FORMAT(IF (b.id_despesa>0, -1*b.valor, b.valor),2) AS valor, CASE WHEN b.id_despesa>0 THEN 'Despesa' WHEN b.id_receita>0 THEN 'Receita' ELSE NULL END AS opr from banco b join condominos c on c.id_condomino = b.id_condomino join fracoes f on f.id_condomino = c.id_condomino";
-                  $stmt = $objUser->runQuery($query);
+                  $stmt=$conn->prepare($query);
                   $stmt->execute();
+                  $result=$stmt->get_result();
                 ?>
                 <tbody>
                   <?php 
-                    if($stmt->rowCount() > 0){
-                    while($rowUser = $stmt->fetch(PDO::FETCH_ASSOC)){
+                    while($rowUser = $result->FETCH_ASSOC()){
                   ?>
                   <tr>
                     <td><?php print($rowUser['id_banco']); ?></td>
@@ -190,21 +185,21 @@ if(isset($_GET['delete_id'])){
                       </a>
                     </td>
                   </tr>
-                  <?php } } ?>
+                  <?php } ?>
 
                 </tbody>
               </table>
               <div>
                 <?php
                   $update = "SELECT UPDATE_TIME FROM information_schema.tables WHERE  TABLE_SCHEMA = 'condominio' AND TABLE_NAME = 'banco'";
-                  $stmt2 = $objUser->runQuery($update);
+                  $stmt2=$conn->prepare($update);
                   $stmt2->execute();
+                  $result2=$stmt2->get_result();
                 
-                  if($stmt2->rowCount() > 0){
-                    while($rowUser2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
+                 while($rowUser2 = $result2->FETCH_ASSOC()){
                 ?>
                 <p>Última atualização <?php print($rowUser2['UPDATE_TIME']); ?></p>
-                <?php } } ?>
+                <?php } ?>
               </div>
 
             
