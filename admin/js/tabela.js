@@ -22,9 +22,9 @@ $(document).ready(function() {
             "paginate": {
                 "previous": "Pág. anterior",
                 "next": "Próxima pág."
-            }
-                
+            }   
          }
+         
     } );
  
     table.buttons().container()

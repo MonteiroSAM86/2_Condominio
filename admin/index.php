@@ -140,7 +140,7 @@ error_reporting(E_ALL);
                     <th>Operação</th>
                     <th>Entidade</th>
                     <th>Descrição</th>
-                    <th>Valor</th>
+                    <th class="text-center">Valor</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -157,14 +157,20 @@ error_reporting(E_ALL);
                   <tr>
                     <td><?php print($rowUser['id_banco']); ?></td>
                     <td><?php print($rowUser['data']); ?></td>
-                    <td><?php print($rowUser['opr']); ?></td>
+                    <?php 
+                      if ($rowUser['opr'] == "Despesa") { ?>
+                        <td class='text-danger'><?php print($rowUser['opr']);?></td>
+                        <?php } else{?>
+                          <td class='text-success'><?php print($rowUser['opr']);?></td>
+                        <?php  }  ?>
+
                     <td><?php print($rowUser['piso']); ?></td>
                     <td><?php print($rowUser['descricao']); ?></td>
-                    <td><?php print($rowUser['valor']); ?> €</td>
-                    <td>
-                      <a href="index.php?edit=<?php print($rowUser['id_banco']); ?>">
+                    <td class="text-right"><?php print($rowUser['valor']); ?> €</td>
+                    <td class="text-center">
+                      <a href="index.php?edit=<?php print($rowUser['id_banco']);?>">
                         <span data-feather="edit"></span>
-                      </a> | 
+                      </a>&nbsp;&nbsp;&nbsp; 
                       <a class="confirmation" href="action.php?delete=<?php print($rowUser['id_banco']); ?>">
                         <span data-feather="trash"></span>
                       </a>
